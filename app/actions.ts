@@ -128,3 +128,63 @@ export const signOutAction = async () => {
   await supabase.auth.signOut();
   return redirect("/sign-in");
 };
+
+
+export const addPropertyAction = async (formData: FormData) => {
+  const supabase = createClient();
+
+  // Obtener el usuario autenticado
+  const { data: { user } } = await supabase.auth.getUser();
+
+  // Asegurarse de que el usuario está autenticado
+  if (!user) {
+    return { error: "User must be logged in to add a property" };
+  }
+
+  const user_id = user.id;
+
+  // Obtener los datos del formulario
+  const name = formData.get("name")?.toString();
+  const address = formData.get("address")?.toString();
+  const description = formData.get("description")?.toString();
+  const type_id = formData.get("type_id")?.toString();
+  const num_bedrooms = formData.get("num_bedrooms")?.toString();
+  const num_bathrooms = formData.get("num_bathrooms")?.toString();
+  const guest_capacity = formData.get("guest_capacity")?.toString();
+  const policies = formData.get("policies")?.toString();
+  const cleaning_fee = formData.get("cleaning_fee")?.toString();
+  const checkin_time = formData.get("checkin_time")?.toString();
+  const checkout_time = formData.get("checkout_time")?.toString();
+  const checkin_instructions = formData.get("checkin_instructions")?.toString();
+
+  // Validar campos obligatorios
+  if (!name || !address || !type_id || !user_id) {
+    return { error: "Property name, address, type, and user are required" };
+  }
+
+  const { data, error } = await supabase.from("properties").insert({
+    name,
+    address,
+    description,
+    type_id: parseInt(type_id),
+    num_bedrooms: num_bedrooms ? parseInt(num_bedrooms) : null,
+    num_bathrooms: num_bathrooms ? parseInt(num_bathrooms) : null,
+    guest_capacity: guest_capacity ? parseInt(guest_capacity) : null,
+    policies,
+    cleaning_fee: cleaning_fee ? parseFloat(cleaning_fee) : null,
+    checkin_time,
+    checkout_time,
+    checkin_instructions,
+    user_id, // Agregar el ID del usuario autenticado
+  });
+
+  // Manejo de errores
+  if (error) {
+    console.error(error.code + " " + error.message);
+    return encodedRedirect("error", "/protected/property", error.message);
+  } else {
+    // Redireccionar si es exitoso
+    return encodedRedirect("success", `/protected/property?success=true`, "Success");
+  }
+};
+

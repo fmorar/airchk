@@ -1,16 +1,23 @@
-import Hero from "@/components/hero";
-import ConnectSupabaseSteps from "@/components/tutorial/connect-supabase-steps";
-import SignUpUserSteps from "@/components/tutorial/sign-up-user-steps";
-import { hasEnvVars } from "@/utils/supabase/check-env-vars";
+"use client";
 
-export default async function Index() {
+import { useTranslation } from 'react-i18next';
+import Hero from "@/components/hero";
+import Loader from "@/components/Loader";
+import '../lib/i18n';
+
+
+export default function Index() {
+  const { t, ready } = useTranslation('common');  // Usamos `common` como namespace
+
+  if (!ready) {
+    return <Loader className="h-screen" />;
+  }
+
   return (
     <>
       <Hero />
-      <main className="flex-1 flex flex-col gap-6 px-4">
-        <h2 className="font-medium text-xl mb-4">Next steps</h2>
-        {hasEnvVars ? <SignUpUserSteps /> : <ConnectSupabaseSteps />}
-      </main>
+      <h1>{t('welcome')}</h1> 
+      <p>{t('description')}</p>
     </>
   );
 }
