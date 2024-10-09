@@ -1,0 +1,22 @@
+{
+  "Homepage": {
+      "title": "Bienvenido a la pagina de inicio",
+      "content": "este es el contenido de inicio"
+  },
+  "Login": {
+    "title": "Iniciar sesión",
+    "noAccount": "¿No tienes una cuenta?",
+    "signUp": "Regístrate",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "tu@example.com",
+    "passwordLabel": "Contraseña",
+    "passwordPlaceholder": "Tu contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "submitButton": "Iniciar sesión",
+    "pendingText": "Iniciando sesión..."
+  },
+  "Nav": {
+    "greeting": "Hola",
+    "signOut": "Cerrar sesión"
+  }
+}

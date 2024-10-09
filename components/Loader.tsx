@@ -5,7 +5,6 @@ export default function Loader({ className }: { className?: string }) {
   return (
     <div className={cn("flex items-center justify-center", className)}>
       <Loader2 className="animate-spin text-primary h-8 w-8" />
-      {/* Puedes ajustar el tamaño y color */}
     </div>
   );
 }

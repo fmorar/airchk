@@ -1,0 +1,22 @@
+{
+  "Homepage": {
+      "title": "Bienvenue sur la page d'accueil",
+      "content": "Ceci est le contenu de la page d'accueil"
+  },
+  "Login": {
+    "title": "Connexion",
+    "noAccount": "Vous n'avez pas de compte?",
+    "signUp": "S'inscrire",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "vous@example.com",
+    "passwordLabel": "Mot de passe",
+    "passwordPlaceholder": "Votre mot de passe",
+    "forgotPassword": "Mot de passe oublié?",
+    "submitButton": "Se connecter",
+    "pendingText": "Connexion en cours..."
+  },
+  "Nav": {
+    "greeting": "Salut",
+    "signOut": "Déconnexion"
+  }
+}

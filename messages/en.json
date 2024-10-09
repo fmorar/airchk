@@ -1,0 +1,22 @@
+{
+  "Homepage": {
+      "title": "Welcome to the homepage",
+      "content": "This is the homepage content"
+  },
+  "Login": {
+    "title": "Sign in",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign up",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Your password",
+    "forgotPassword": "Forgot Password?",
+    "submitButton": "Sign in",
+    "pendingText": "Signing In..."
+  },
+  "Nav": {
+    "greeting": "Hey",
+    "signOut": "Sign out"
+  }
+}

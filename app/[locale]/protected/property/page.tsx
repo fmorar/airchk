@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import toast from 'react-hot-toast';
 import { createClient } from "@/utils/supabase/client";
-import Link from "next/link";
+import { Link } from "@/navigation";
 
 export default function PropertyListPage() {
   const [properties, setProperties] = useState([]);

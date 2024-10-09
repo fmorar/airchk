@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import { addPropertyAction } from "@/app/actions";
+import { addPropertyAction } from "@/app/[locale]/actions";
 import { FormMessage, Message } from "@/components/form-message";
 import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";

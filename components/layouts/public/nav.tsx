@@ -1,8 +1,9 @@
-import Link from "next/link";
 import  Logo  from '@/components/logo'
 import  { Button }  from "@/components/ui/button";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { Link } from "@/navigation";
+
 
 
 export default function Nav() {

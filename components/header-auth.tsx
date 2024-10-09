@@ -1,7 +1,7 @@
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { Button } from "./ui/button";
 
-import { signOutAction } from "@/app/actions";
+import { signOutAction } from "@/app/[locale]/actions";
 import { hasEnvVars } from "@/utils/supabase/check-env-vars";
 import { createClient } from "@/utils/supabase/server";
 

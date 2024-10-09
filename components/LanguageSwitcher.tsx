@@ -11,56 +11,46 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useEffect, useState } from "react";
 
+const languages = {
+  en: "English",
+  es: "Español",
+  fr: "Français"
+};
+
 const LanguageSwitcher = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const [selectedLanguage, setSelectedLanguage] = useState('en');
 
-  const [selectedLanguage, setSelectedLanguage] = useState<string>('en');
-
-  // Establece el idioma según la ruta actual al cargar el componente
   useEffect(() => {
-    const segments = pathname.split('/').filter(Boolean);
-    if (segments[0] === 'es' || segments[0] === 'en') {
-      setSelectedLanguage(segments[0]);
-    }
+    const lang = pathname.split('/')[1];
+    if (languages[lang]) setSelectedLanguage(lang);
   }, [pathname]);
 
   const changeLanguage = (lang: string) => {
     const segments = pathname.split('/').filter(Boolean);
-
-    // Reemplaza el prefijo del idioma o agrega uno si no existe
-    if (segments[0] === 'en' || segments[0] === 'es') {
-      segments[0] = lang;
-    } else {
-      segments.unshift(lang);
-    }
-
-    // Genera la nueva ruta con el idioma actualizado
-    const newPath = `/${segments.join('/')}`;
-    router.push(newPath, newPath, { locale: lang });  // Agrega { locale: lang }
+    segments[0] = languages[segments[0]] ? lang : [lang, ...segments].join('/');
+    router.push(`/${segments.join('/')}`, undefined, { locale: lang });
   };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size={"sm"}>
-          {selectedLanguage === "es" ? "Español" : "English"}
-        </Button>
+        <Button variant="ghost" size="sm">{languages[selectedLanguage]}</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-content" align="start">
         <DropdownMenuRadioGroup
           value={selectedLanguage}
           onValueChange={(lang) => {
             setSelectedLanguage(lang);
-            changeLanguage(lang);  // Cambia el idioma cuando se selecciona
+            changeLanguage(lang);
           }}
         >
-          <DropdownMenuRadioItem className="flex gap-2" value="es">
-            <span>Español</span>
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem className="flex gap-2" value="en">
-            <span>English</span>
-          </DropdownMenuRadioItem>
+          {Object.entries(languages).map(([key, label]) => (
+            <DropdownMenuRadioItem key={key} className="flex gap-2" value={key}>
+              <span>{label}</span>
+            </DropdownMenuRadioItem>
+          ))}
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>

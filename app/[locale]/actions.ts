@@ -35,7 +35,7 @@ export const signUpAction = async (formData: FormData) => {
   }
 };
 
-export const signInAction = async (formData: FormData) => {
+export const signInAction = async (formData: FormData, locale: string) => {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
   const supabase = createClient();
@@ -46,10 +46,10 @@ export const signInAction = async (formData: FormData) => {
   });
 
   if (error) {
-    return encodedRedirect("error", "/sign-in", error.message);
+    return encodedRedirect("error", `/${locale}/sign-in`, error.message); 
   }
 
-  return redirect("/protected");
+  return redirect(`/${locale}/protected`);
 };
 
 export const forgotPasswordAction = async (formData: FormData) => {
@@ -123,11 +123,12 @@ export const resetPasswordAction = async (formData: FormData) => {
   encodedRedirect("success", "/protected/reset-password", "Password updated");
 };
 
-export const signOutAction = async () => {
+export const signOutAction = async (locale: string) => {
   const supabase = createClient();
   await supabase.auth.signOut();
-  return redirect("/sign-in");
+    return redirect(`/${locale}/sign-in`);
 };
+
 
 
 export const addPropertyAction = async (formData: FormData) => {
